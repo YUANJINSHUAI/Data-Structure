@@ -1,0 +1,28 @@
+# -*- coding:utf-8 -*-
+"""
+Created on Tue Apr  2 10:50:19 2019
+@author: arthu
+"""
+class ListNode:
+     def __init__(self, x):
+         self.val = x
+         self.next = None
+
+class Solution:
+    
+    def printListFromHeadToTail(self, listNode): # listNode 为 链表的第一个节点，其他的节点由于有next指针相连，所以不需要输入其他的
+        answer = [] # 创建一个空的列表，把链表里面的data放到里面
+        head = listNode # 把head头指针指第一个节点，也就是listNode这个
+        while head is not None: # 当 head头指针指向的节点非空时，如果非空，这个遍历就结束了，这就是是用while的原因
+            answer.extend([head.val]) # answer这个空的列表往后扩展一位，扩展的就是head这个指针指向节点的数值
+            head = head.next # head 往后移动一位， 然后再重现这个while循环，head由于往后移了一位，所以需要判断时候头指针是否指向的是空
+        return answer  # 
+    # 返回从尾部到头部的列表值序列，例如[1,2,3]
+    def printListFromTailToHead(self, listNode):
+        # write code here
+        answer = []
+        head = listNode
+        while head:
+            answer.insert(0, head.val)
+            head = head.next
+        return answer
