@@ -1,0 +1,57 @@
+"""
+Created on Wed Apr  3 16:40:16 2019
+
+@author: arthu
+"""
+
+# Python program to demonstrate insert operation in binary search tree 
+
+# A utility class that represents an individual node in a BST 
+class Node: 
+	def __init__(self,key): 
+		self.left = None
+		self.right = None
+		self.val = key 
+
+# A utility function to insert a new node with the given key 
+# 因为用insert 用到了递归，要成为全局函数，所以不能放到类里面了
+def insert(root,node):  # node 是要插入的节点，root是指根节点
+    if root is None:  # 如果root是空的话
+        root = node  # 把要插入的节点赋值给root
+    else:  # 如果root不是空的话
+        if root.val < node.val: # 如果根节点的值小于要插入的值的时候，则把插入的值赋给右节点
+            if root.right is None: # 如果右节点是空的
+                root.right = node  # 则把要赋值的节点直接给右节点
+            else: # 如果右节点不是空的
+                insert(root.right, node) #则 用递归插入右节点的下一个level的节点，因为是左是右还不清楚缩影，所以用递归插入 insert（root.right，node）
+        else: # 如果根节点的值大于要插入的值的时候，则把插入的值赋给左节点
+            if root.left is None: # 如果左节点是空的
+                root.left = node # 则把要赋值的节点直接给左节点
+            else: # 如果左节点不是空的
+                insert(root.left, node) # 则用递归把插入的节点赋值给下一个level的节点，因为因为是左是右还不清楚，所以用递归插入 insert（root.right，node）
+
+# A utility function to do inorder tree traversal 
+def inorder(root): 
+	if root: 
+		inorder(root.left) 
+		print(root.val) 
+		inorder(root.right) 
+
+
+# Driver program to test the above functions 
+# Let us create the following BST 
+#	 50 
+# /	 \ 
+# 30	 70 
+# / \ / \ 
+# 20 40 60 80 
+r = Node(50) 
+insert(r,Node(30)) 
+insert(r,Node(20)) 
+insert(r,Node(40)) 
+insert(r,Node(70)) 
+insert(r,Node(60)) 
+insert(r,Node(80)) 
+
+# Print inoder traversal of the BST 
+inorder(r) 
