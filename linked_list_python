@@ -26,6 +26,14 @@ class Solution:
             answer.insert(0, head.val)
             head = head.next
         return answer
+    def printListFromHeadToTail(self, listNode):
+        # write code here
+        answer = []
+        head = listNode
+        while head:
+            answer.extend([head.val])
+            head = head.next
+        return answer
 '''
 测试结果
 In [1]:l1 =  ListNode(1)
