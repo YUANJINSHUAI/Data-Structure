@@ -1,0 +1,49 @@
+'''
+建树方式一
+'''
+class Node: # 这个里面你可以存储任何一种类型，树的根节点可以指向你存储的任何一种类型
+    def __init__(self, data): # 定义具有根，以及左右子树属性的类，更紧密结合了面向对象
+        self.data = data # 存储节点设为根值得名称
+        self.left = None # 引用类
+        self.right = None # 引用类
+ 
+root = Node(6) # 构造一个根节点使其不光有data得属性，还是有left和right属性
+root.left = Node(2) # 构造一个左节点，要想使其不光有data属性，还有left和right属性得话，需要用类Node()去定义
+root.right = Node(4) # 构造一个右节点，要想使其不光有data属性，还有left和right属性得话，也需要用类Node()去定义
+
+'''
+建树方式二
+'''
+class Tree(object):
+    def __init__(self):
+        self.left = None
+        self.right = None
+        self.data = None
+ 
+root = Tree()
+root.data = "root"
+root.left = Tree()
+root.left.data = "left"
+root.right = Tree()
+root.right.data = "right"
+ 
+print(root.left.data)
+
+# You could then further create the tree like this:
+class Tree(object):
+    def __init__(self):
+        self.left = None
+        self.right = None
+        self.data = None
+ 
+root = Tree()
+root.data = "root"
+root.left = Tree()
+root.left.data = "left"
+root.right = Tree()
+root.right.data = "right"
+ 
+root.left.left = Tree()
+root.left.left.data = "left 2"
+root.left.right = Tree()
+root.left.right.data = "left-right"
