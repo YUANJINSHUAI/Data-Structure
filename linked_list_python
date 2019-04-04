@@ -26,22 +26,16 @@ class Solution:
             answer.insert(0, head.val)
             head = head.next
         return answer
-    def printListFromHeadToTail(self, listNode):
-        # write code here
-        answer = []
-        head = listNode
-        while head:
-            answer.extend([head.val])
-            head = head.next
-        return answer
-'''
-测试结果
-In [1]:l1 =  ListNode(1)
+ '''
+ 测试部分
+ '''
+l1 =  ListNode(1)
 l1_1 = ListNode(2)
 l1_2 = ListNode(4)
 l1.next = l1_1
 l1_1.next = l1_2
 T = Solution()
 T.printListFromHeadToTail(l1)
+T.printListFromTailToHead(l1)
 Out[1]: [1, 2, 4]
-'''
+Out[2]: [4, 2, 1]
