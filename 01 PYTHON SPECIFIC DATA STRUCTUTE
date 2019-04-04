@@ -1,0 +1,43 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Apr  4 13:13:04 2019
+
+@author: arthu
+"""
+# PYTHON SPECIFIC DATA STRUCTUTE
+
+# 1 LIST
+list1 = ['physics', 'chemistry', 1997, 2000]
+list2 = [1, 2, 3, 4, 5 ]
+list3 = ["a", "b", "c", "d"]
+# Access
+list1[0]
+list2[0:3]
+# Update
+list2[2] = 2001
+# Delete
+del list2[0]
+
+# 2 TUPLE
+tup1 = ('physics', 'chemistry', 1997, 2000);
+tup2 = (1, 2, 3, 4, 5, 6, 7 );
+# Access
+tup1[0]
+tup2[1:5]
+# Update
+tup3 = tup1 + tup2
+# Delete
+del tup1
+
+# 3 DICTIONARY
+dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+# Access
+dict['Name']
+# Update
+dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+dict['Age'] = 8; # update existing entry
+dict['School'] = "DPS School"; # Add new entry
+# Delete
+del dict['Age']
+dict.clear()
+del dict 
