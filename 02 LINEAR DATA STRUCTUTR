@@ -1,1 +1,340 @@
 
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Apr  4 13:13:04 2019
+
+@author: arthu
+"""
+# LINEAR DATA STRUCTUTR
+
+# 0 ARRAY
+
+from array import * 
+array1 = array('i', [10,20,30,40,50])
+
+# 0.1 Access
+
+array1[0]
+array1[2]
+
+# 0.2 Update
+
+array1[1] = 1
+
+# 0.3 Delete
+
+array1.remove(40)
+
+# 0.4 Insert
+
+array1.insert(1, 60)
+
+# 0.5 Search
+
+array1.index(20) # return index
+
+# 1 2D ARRAY (LIST)
+
+T = [[11, 12, 5, 2], [15, 6,10], [10, 8, 12, 5], [12,15,8,6]] # list
+
+# 1.1 Access
+
+T[1]
+T[1][2]
+
+# 2.1 Update
+
+T[1] =[2,3]
+T[1][1] = 2
+
+# 2.2 Delete
+
+del T[1]
+
+# 2.3 Insert
+
+T.insert(2,[1,2,3,3,4])
+
+# 2 MATRIX
+
+from numpy import * 
+a = array([['Mon',18,20,22,17],['Tue',11,18,21,18],
+		   ['Wed',15,21,20,19],['Thu',11,20,22,21],
+		   ['Fri',18,17,23,22],['Sat',12,22,20,18],
+		   ['Sun',13,15,19,16]])
+
+# 2.1 Access
+
+a[2]
+a[2][2]
+
+# 2.2 Adding a row at the last 
+
+add_r = append(a,[['Avg',12,15,13,11]],0) # 0 means axis = 0
+
+# 2.3 Adding a column
+
+insert_c = insert(a,[4],[[1],[2],[3],[4],[5],[6],[7]],1)
+
+# 2.4 Delete a row
+
+delete(a,[2],0)
+
+# 2.5 Delete a column
+
+delete(a,[2],1)
+
+# 2.6 Update
+a[3] = ['Thu',0,0,0,0]
+
+# 3 SET
+
+Days=set(["Mon","Tue","Wed","Thu","Fri","Sat","Sun"])
+Months={"Jan","Feb","Mar"}
+Dates={21,22,17}
+
+# 3.1 Access 
+
+Days=set(["Mon","Tue","Wed","Thu","Fri","Sat","Sun"])
+for d in Days:
+	print(d)
+
+# 3.2 Adding 
+
+Days.add('Sun')
+
+# 3.3 Remove
+
+Days.discard("Sun")
+
+# 3.4 Union of Sets
+
+DaysA = set(["Mon","Tue","Wed"])
+DaysB = set(["Wed","Thu","Fri","Sat","Sun"])
+AllDays = DaysA|DaysB
+
+# 3.5 Intersection of Sets
+
+DaysA = set(["Mon","Tue","Wed"])
+DaysB = set(["Wed","Thu","Fri","Sat","Sun"])
+AllDays = DaysA & DaysB
+print(AllDays)
+
+# 3.6 Difference of Sets
+
+DaysA = set(["Mon","Tue","Wed"])
+DaysB = set(["Wed","Thu","Fri","Sat","Sun"])
+AllDays = DaysA - DaysB
+
+# 3.7 Compare Sets
+
+DaysA = set(["Mon","Tue","Wed"])
+DaysB = set(["Mon","Tue","Wed","Thu","Fri","Sat","Sun"])
+SubsetRes = DaysA <= DaysB
+SupersetRes = DaysB >= DaysA
+
+# 4 MAPS
+
+import collections
+dict1 = {'day1': 'Mon', 'day2': 'Tue'}
+dict2 = {'day3': 'Wed', 'day1': 'Thu'}
+res = collections.ChainMap(dict1, dict2)
+for key, val in res.items():
+    print('{} = {}'.format(key, val))
+
+# 4.1 Recording
+
+import collections
+dict1 = {'day1': 'Mon', 'day2': 'Tue'}
+dict2 = {'day3': 'Wed', 'day4': 'Thu'}
+res1 = collections.ChainMap(dict1, dict2)
+res2 = collections.ChainMap(dict2, dict1)
+
+# 4.2 Updating
+
+ import collections
+dict1 = {'day1': 'Mon', 'day2': 'Tue'}
+dict2 = {'day3': 'Wed', 'day4': 'Thu'}
+res = collections.ChainMap(dict1, dict2)
+print(res.maps,'\n')
+dict2['day4'] = 'Fri'
+print(res.maps,'\n')
+
+# 5 Node
+
+class daynames:
+    def __init__(self, dataval=None):
+        self.dataval = dataval
+        self.nextval = None
+e1 = daynames('Mon')
+e2 = daynames('Tue')
+e3 = daynames('Wed')
+e1.nextval = e3
+e3.nextval = e2
+
+# 5.1 Traversing the Node Elements
+
+e1 = daynames('Mon')
+e2 = daynames('Wed')
+e3 = daynames('Tue')
+e4 = daynames('Thu')
+
+e1.nextval = e3
+e3.nextval = e2
+e2.nextval = e4
+
+thisvalue = e1
+
+while thisvalue:
+        print(thisvalue.dataval)
+        thisvalue = thisvalue.nextval # 到了最后一个位置，是没有值，也就是Null，然后存在，可以赋值，不能比较，因为没有值，可以判断，
+        
+# 6 Linked Lists
+
+class Node:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+     
+
+e1 = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Wed")
+
+# 6.1 Travering
+
+class Node:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+e1 = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Wed")
+
+e1.next = e2
+e2.next = e3
+
+head = e1
+
+while head is not None:
+    print(head.val)
+    head = head.next
+
+# 6.2 Insertion at the Beginning of the Linked List
+
+class Node:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+           
+e1 = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Wed")
+
+e1.next = e2
+e2.next = e3
+
+head = e1
+newhead = Node("Sun")
+newhead.next = head
+head = newhead 
+
+# Inserting at the End of the Linked List
+
+class Node:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+           
+e1 = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Wed")
+
+e1.next = e2
+e2.next = e3
+e4 =Node('Thu') 
+last = e4
+
+head = e1
+while head.next is not None:    
+    head = head.next
+head.next = last
+    
+newhead = Node("Sun")
+newhead.next = head
+head = newhead 
+
+# Inserting in between two Data Nodes
+class Node:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+           
+e1 = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Thu")
+e4 = Node("Fri")
+e1.next = e2
+e2.next = e3
+e3.next = e4
+
+head = e1
+middle = Node('44')
+i = 3 # 插入到第二个位置
+index = i-2 
+while index > 0:
+    head = head.next
+    index = index - 1
+middle.next = head.next
+head.next = middle
+
+head = e1 
+while head is not None:
+    print(head.val)
+    head = head.next
+
+# Removing an Item form a Liked List
+ class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class SLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def Atbegining(self, data_in):
+        NewNode = Node(data_in)
+        NewNode.next = self.head
+        self.head = NewNode
+		
+# Function to remove node
+def RemoveNode(head, Removekey): # 输入链表的头节点
+    if head is None:
+        return
+    
+    if head is not None:
+        if head.val == Removekey:
+            head = Head.next
+            head = None
+            return
+
+    while head is not None:
+        if head.val == Removekey:
+            break
+        prev = head
+        head = head.next
+
+    prev.next = head.next
+    
+    head = None
+
+e1 = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Thu")
+e4 = Node("Fri")
+e1.next = e2
+e2.next = e3
+e3.next = e4  
+RemoveNode(e1,"Tue")
