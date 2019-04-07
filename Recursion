@@ -1,0 +1,57 @@
+find 5!
+5! = 1*2*3*4*5 = 120
+
+1. An iterative Algorithm
+
+def getFactorical(5)
+  focorial = 1
+    for x = 1 to 5:
+      factorial = factorial * x
+
+2. A Recursive Algorithm
+def getFactorical(n)
+  if n < 2:
+    return 1
+  else:
+    return n*getFactorical(n-1)
+ 
+  '''
+  以下是问题代码
+  '''
+  class Solution(object):
+    def maxDepth(self, root):
+        depth = 0       # 这个depth删掉，我们用递归的次数，代替depth，在最后r1和r2上加上1 + return（相当于返回的值，类似于depth = depth + 1的意思）
+        if root is None:
+            return depth 
+        # 问题说明：接下来的是判断root的下一个节点是不是都为空的节点
+        depth = depth  + 1 # 这里应该在这之前加上 if root is not None:
+        while root.left is None and root.right is None: # 后面的都不要了
+            depth = depth
+            return depth
+        else:            
+            if root.left is not None:
+                root_1 = root.left  
+            else:
+                root_1 = root
+            if root.right is not None:
+                root_2 = root.right
+            else:
+                root_2 = root
+            depth = depth + 1
+            r1 = self.maxDepth(root_1) # 应该改成 r1 = self.maxDepth(root.left) 首先看看root.left是否为空
+            r2 = self.maxDepth(root_2) # 应该改成 r2 = self.maxDepth(root.right) 首先看看root.right是否为空
+        
+        return r1, r2 
+    
+    '''
+    以下为正确代码
+    '''
+    class Solution(object):
+    def maxDepth(self, root):
+        if root is None:
+            return 0 
+        if root is not None:       
+            r1 = 1 + self.maxDepth(root.left) 
+            r2 = 1 + self.maxDepth(root.right) 
+        return max(r1, r2)
+             
