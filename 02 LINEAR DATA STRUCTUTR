@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Apr  7 09:21:08 2019
+
+@author: Administrator
+"""
+
 
 # -*- coding: utf-8 -*-
 """
@@ -31,9 +38,9 @@ array1.insert(1, 60)
 
 # 0.5 Search
 
-array1.index(20) # return index
+array1.index(30) # return index
 
-# 1 2D ARRAY (LIST)
+# 1 2D ARRAY (is LIST)
 
 T = [[11, 12, 5, 2], [15, 6,10], [10, 8, 12, 5], [12,15,8,6]] # list
 
@@ -55,7 +62,7 @@ del T[1]
 
 T.insert(2,[1,2,3,3,4])
 
-# 2 MATRIX
+# 2 MATRIX(is array)
 
 from numpy import * 
 a = array([['Mon',18,20,22,17],['Tue',11,18,21,18],
@@ -70,7 +77,7 @@ a[2][2]
 
 # 2.2 Adding a row at the last 
 
-add_r = append(a,[['Avg',12,15,13,11]],0) # 0 means axis = 0
+add_r = append(a,[['Avg',12,15,13,11]],0) # 0 means axis = row
 
 # 2.3 Adding a column
 
@@ -87,7 +94,7 @@ delete(a,[2],1)
 # 2.6 Update
 a[3] = ['Thu',0,0,0,0]
 
-# 3 SET
+# 3 SET(is not Common)
 
 Days=set(["Mon","Tue","Wed","Thu","Fri","Sat","Sun"])
 Months={"Jan","Feb","Mar"}
@@ -133,7 +140,7 @@ DaysB = set(["Mon","Tue","Wed","Thu","Fri","Sat","Sun"])
 SubsetRes = DaysA <= DaysB
 SupersetRes = DaysB >= DaysA
 
-# 4 MAPS
+# 4 MAPS(is a bigger set)
 
 import collections
 dict1 = {'day1': 'Mon', 'day2': 'Tue'}
@@ -166,6 +173,7 @@ class daynames:
     def __init__(self, dataval=None):
         self.dataval = dataval
         self.nextval = None
+        
 e1 = daynames('Mon')
 e2 = daynames('Tue')
 e3 = daynames('Wed')
@@ -189,7 +197,7 @@ while thisvalue:
         print(thisvalue.dataval)
         thisvalue = thisvalue.nextval # 到了最后一个位置，是没有值，也就是Null，然后存在，可以赋值，不能比较，因为没有值，可以判断，
         
-# 6 Linked Lists
+# 6 Linked Lists(base on Node)
 
 class Node:
     def __init__(self, x):
@@ -240,7 +248,7 @@ newhead = Node("Sun")
 newhead.next = head
 head = newhead 
 
-# Inserting at the End of the Linked List
+# 6.3 Inserting at the End of the Linked List
 
 class Node:
     def __init__(self, x):
@@ -254,7 +262,7 @@ e3 = Node("Wed")
 e1.next = e2
 e2.next = e3
 e4 =Node('Thu') 
-last = e4
+last = e4 # 关键一步，添加last指针，不光只有head指针了
 
 head = e1
 while head.next is not None:    
@@ -265,7 +273,7 @@ newhead = Node("Sun")
 newhead.next = head
 head = newhead 
 
-# Inserting in between two Data Nodes
+# 6.4 Inserting in between two Data Nodes
 class Node:
     def __init__(self, x):
         self.val = x
@@ -294,7 +302,7 @@ while head is not None:
     print(head.val)
     head = head.next
 
-# Removing an Item form a Liked List
+# 6.5 Removing an Item form a Liked List
  class Node:
     def __init__(self, data=None):
         self.data = data
@@ -309,32 +317,326 @@ class SLinkedList:
         NewNode.next = self.head
         self.head = NewNode
 		
-# Function to remove node
-def RemoveNode(head, Removekey): # 输入链表的头节点
-    if head is None:
-        return
-    
-    if head is not None:
-        if head.val == Removekey:
-            head = Head.next
-            head = None
+# 6.6 Function to remove node
+ class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None      
+    def RemoveNode(head, Removekey): # 输入链表的头节点
+        if head is None:
             return
-
-    while head is not None:
-        if head.val == Removekey:
-            break
-        prev = head
-        head = head.next
-
-    prev.next = head.next
+        
+        if head is not None:
+            if head.val == Removekey:
+                head = Head.next
+                head = None
+                return
     
-    head = None
+        while head is not None:
+            if head.val == Removekey:
+                break
+            prev = head
+            head = head.next
+    
+        prev.next = head.next
+        
+        head = None
+    
+    e1 = Node("Mon")
+    e2 = Node("Tue")
+    e3 = Node("Thu")
+    e4 = Node("Fri")
+    e1.next = e2
+    e2.next = e3
+    e3.next = e4  
+    RemoveNode(e1,"Tue")
 
-e1 = Node("Mon")
-e2 = Node("Tue")
-e3 = Node("Thu")
-e4 = Node("Fri")
-e1.next = e2
-e2.next = e3
-e3.next = e4  
-RemoveNode(e1,"Tue")
+#  7 Stack
+# 7.1 PUSH into Stack
+class Stack:
+    def __init__(self):
+        self.stack = [] # 这个时候stack是一个空列表，因为要用到append在最后添加一个列表的性质
+ 
+    def add(self, dataval):
+        if dataval is not None:
+            self.stack.append(dataval)
+            return True
+        else:
+            return False
+
+    def peek(self):
+        return self.stack[-1]
+        
+AStack = Stack()
+AStack.add('Mon')
+AStack.peek()
+AStack.add("Tue") 
+AStack.peek()
+AStack.add("Wed")
+AStack.peek()
+AStack.add("Thu")
+AStack.peek()
+
+# 7.1  POP from a Stack
+class Stack:
+    def __init__(self):
+        self.stack = [] # 这个时候stack是一个空列表，因为要用到append在最后添加一个列表的性质
+ 
+    def add(self, dataval):
+        if dataval is not None:
+            self.stack.append(dataval)
+            return True
+        else:
+            return False
+    def remove(self):
+        if len(self.stack) <= 0:
+            return ("No element in the Stack")
+        else:
+            return self.stack.pop()
+        
+    def peek(self):
+        return self.stack[-1]
+
+AStack = Stack()
+AStack.add("Mon")
+AStack.peek()
+AStack.add("Tue")
+AStack.peek()
+AStack.add("Wed")
+AStack.peek()
+AStack.add("Thu")
+AStack.peek()
+AStack.remove()
+AStack.remove()
+
+# 8 Queue
+# 8.1 Adding Elements to a Queue
+class Queue:
+
+  def __init__(self):
+      self.queue = list()
+
+  def addtoq(self,dataval):
+  # Insert method to add element
+      if dataval is not None:
+          self.queue.insert(0,dataval)
+          return True
+      else:
+        return ('Nothing will be adding') 
+
+  def size(self):
+      return len(self.queue)
+  
+TheQueue = Queue()
+TheQueue.addtoq("Mon")
+TheQueue.addtoq("Tue")
+TheQueue.addtoq("Wed")
+TheQueue.size() 
+
+# 8.2 Removing Element from a Queue
+class Queue:
+
+  def __init__(self):
+      self.queue = list()
+
+  def addtoq(self,dataval):
+      # Insert method to add element
+      if dataval not in self.queue:
+          self.queue.insert(0,dataval)
+          return True
+      return False
+ 
+    # Pop method to remove element
+  def removefromq(self):
+      if len(self.queue)>0:
+          return self.queue.pop()
+      return ("No elements in Queue!")
+
+TheQueue = Queue()
+TheQueue.addtoq("Mon")
+TheQueue.addtoq("Tue")
+TheQueue.addtoq("Wed")
+TheQueue.removefromq()
+TheQueue.removefromq()
+
+# 9 Deque
+
+import collections
+
+# 9.1 Create a deque
+
+DoubleEnded = collections.deque(["Mon","Tue","Wed"])
+print (DoubleEnded)
+
+# 9.2 Append to the right
+
+print("Adding to the right: ")
+DoubleEnded.append("Thu")
+print (DoubleEnded)
+
+# 9.3 append to the left
+
+print("Adding to the left: ")
+DoubleEnded.appendleft("Sun")
+print (DoubleEnded)
+
+# 9.4 Remove from the right
+
+print("Removing from the right: ")
+DoubleEnded.pop()
+print (DoubleEnded)
+
+# 9.5 Remove from the left
+
+print("Removing from the left: ")
+DoubleEnded.popleft()
+print (DoubleEnded)
+
+# 9.6 Reverse the dequeue
+
+print("Reversing the deque: ")
+DoubleEnded.reverse()
+print (DoubleEnded)
+
+# 10 Advanced Linked list
+
+# 10.1 Creating Doubly linked list
+
+class Node:
+   def __init__(self, data):
+      self.data = data
+      self.next = None
+      self.prev = None
+
+class doubly_linked_list:
+
+   def __init__(self):
+      self.head = None
+
+# Adding data elements		
+   def push(self, NewVal):
+      NewNode = Node(NewVal)
+      NewNode.next = self.head
+      if self.head is not None:
+         self.head.prev = NewNode
+      self.head = NewNode
+
+# Print the Doubly Linked list		
+   def listprint(self, node):
+      while (node is not None):
+         print(node.data),
+         last = node
+         node = node.next
+
+dllist = doubly_linked_list()
+dllist.push(12)
+dllist.listprint(dllist.head)
+dllist.push(8)
+dllist.listprint(dllist.head)
+dllist.push(62)
+dllist.listprint(dllist.head)
+
+# 10.2 Inserting into Doubly Linked List
+
+# Create the Node class
+class Node:
+   def __init__(self, data):
+      self.data = data
+      self.next = None
+      self.prev = None
+
+# Create the doubly linked list
+class doubly_linked_list:
+
+   def __init__(self):
+      self.head = None
+
+# Define the push method to add elements		
+   def push(self, NewVal):
+
+      NewNode = Node(NewVal)
+      NewNode.next = self.head
+      
+      if self.head is not None:
+         self.head.prev = NewNode
+      self.head = NewNode
+
+# Define the insert method to insert the element		
+   def insert(self, prev_node, NewVal):
+      if prev_node is None:
+         return False
+      NewNode = Node(NewVal)
+      NewNode.next = prev_node.next
+      prev_node.next = NewNode
+      NewNode.prev = prev_node
+      if NewNode.next is not None:
+         NewNode.next.prev = NewNode
+
+# Define the method to print the linked list 
+   def listprint(self, node):
+      while (node is not None):
+         print(node.data),
+         last = node
+         node = node.next
+
+dllist = doubly_linked_list()
+dllist.push(12)
+dllist.push(8)
+dllist.push(62)
+dllist.insert(dllist.head.next, 13)
+dllist.listprint(dllist.head)
+
+# 10.3 Appending to a Doubly linked list
+
+# Create the node class
+class Node:
+   def __init__(self, data):
+      self.data = data
+      self.next = None
+      self.prev = None
+# Create the doubly linked list class
+class doubly_linked_list:
+
+   def __init__(self):
+      self.head = None
+
+# Define the push method to add elements at the begining
+   def push(self, NewVal):
+      NewNode = Node(NewVal)
+      NewNode.next = self.head
+      if self.head is not None:
+         self.head.prev = NewNode
+      self.head = NewNode
+
+# Define the append method to add elements at the end
+   def append(self, NewVal):
+
+      NewNode = Node(NewVal)
+      NewNode.next = None
+      if self.head is None:
+         NewNode.prev = None
+         self.head = NewNode
+         return
+      
+      last = self.head
+      while (last.next is not None):
+         last = last.next
+      
+      last.next = NewNode
+      NewNode.prev = last
+      return
+
+# Define the method to print
+   def listprint(self, node):
+      while (node is not None):
+         print(node.data),
+         last = node
+         node = node.next
+
+dllist = doubly_linked_list()
+dllist.push(12)
+dllist.append(9)
+dllist.push(8)
+dllist.push(62)
+dllist.append(45)
+dllist.listprint(dllist.head)
