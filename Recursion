@@ -54,4 +54,22 @@ def getFactorical(n)
             r1 = 1 + self.maxDepth(root.left) 
             r2 = 1 + self.maxDepth(root.right) 
         return max(r1, r2)
-             
+ 
+ '''
+ 递归的另一个例子——二叉树的插入
+ '''
+ def insert(self, data):
+    if self.data is not None:
+        if data >= self.data:
+            if self.left is not None:
+                 self.left.insert = Node(data) # 如果要插入的节点存在数据，则要将这个节点看成根节点，在执行一下insert
+            else:
+                self.left = Node(data)
+        else:
+             if self.right is not None:
+                 self.right.insert = Node(data)
+             else:
+                 self.right = None(data)
+    else:
+        self.data = data
+ 
