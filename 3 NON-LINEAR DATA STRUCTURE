@@ -1,0 +1,335 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr  8 09:45:59 2019
+
+@author: Administrator
+"""
+
+# NON-LINEAR DATA STRUCTURE
+
+# 1 Hash Table 
+
+# 1.1 Accessing Values in Dictionary
+
+# Declare a dictionary 
+dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+
+# Accessing the dictionary with its key
+print("dict['Name']: ", dict['Name'])
+print( "dict['Age']: ", dict['Age'])
+
+# 1.2 Updating Dictionary
+
+# Declare a dictionary
+dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+dict['Age'] = 8; # update existing entry
+dict['School'] = "DPS School"; # Add new entry
+print("dict['Age']: ", dict['Age'])
+print("dict['School']: ", dict['School'])
+
+# 1.3 Delete Dictionary Elements
+dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+
+del dict['Name']; # remove entry with key 'Name'
+dict.clear();     # remove all entries in dict
+del dict ;        # delete entire dictionary
+print("dict['Age']: ", dict['Age'])
+print("dict['School']: ", dict['School'])
+
+# 2 Binary Tree
+
+# 2.1 Create Root
+class Node:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+    
+    def PrintTree(self):
+        print(self.val)
+
+root = Node(10)
+root.PrintTree
+
+# 2.2 Inserting into a Tree
+class Node:
+    def __init__(self, x):
+        self.data = x
+        self.left = None
+        self.right = None
+# Compare the new value with the parent node    
+    def insert(self, data):
+        if self.data is not None:
+            if data <= self.data:
+                if self.left is not None:
+                     self.left.insert(data)
+                else:
+                    self.left = Node(data)
+            else:
+                 if self.right is not None:
+                     self.right.insert(data)
+                 else:
+                     self.right = Node(data)
+        else:
+            self.data = data
+# Print the tree
+    def PrintTree(self):
+        if self.left is not None:
+            self.left.PrintTree()
+        print(self.data)
+        if self.right is not None:
+            self.right.PrintTree()
+                      
+root = Node(12)
+root.insert(6)
+root.insert(14)
+root.insert(3)
+
+root.PrintTree()
+
+# 2.3 Traersing a Tree
+    # detail in Algorithm
+
+# 3 Search Tree
+class Node:
+    def __init__(self, x):
+        self.data = x
+        self.left = None
+        self.right = None
+        
+# Compare the new value with the parent node     
+    def insert(self, data):
+        if self.data is not None:
+            if data <= self.data:
+                if self.left is not None:
+                     self.left.insert(data)
+                else:
+                    self.left = Node(data)
+            else:
+                 if self.right is not None:
+                     self.right.insert(data)
+                 else:
+                     self.right = Node(data)
+        else:
+            self.data = data
+    
+    def finval(self, lkpval):
+        if lkpval is None:
+            pass
+        else:
+            if lkpval == self.data:
+                return str(lkpval) + " Found"
+            if lkpval > self.data:
+                if self.right is None: 
+                    return str(lkpval) + " Not Found"
+                return self.right.finval(lkpval)
+            if lkpval < self.data:
+                if self.left is None:
+                    return str(lkpval) + " Not Found"
+                return self.left.finval(lkpval)
+            
+# Print the tree
+    def PrintTree(self):
+        if self.left is not None:
+            self.left.PrintTree()
+        print(self.data)
+        if self.right is not None:
+            self.right.PrintTree()
+            
+root = Node(12)
+root.insert(6)
+root.insert(14)
+root.insert(3)
+root.finval(7)
+root.finval(14)
+    
+# 4 Heaps
+
+# 4.1  Creating a Heap
+
+import heapq
+H = [21,1,45,78,3,5]
+# Use heapify to rearrange the elements
+heapq.heapify(H)
+print(H)
+
+# 4.2 Inserting into heap
+
+import heapq
+H = [21,1,45,78,3,5]
+# Covert to a heap
+heapq.heapify(H)
+print(H)
+# Add element
+heapq.heappush(H,8)
+print(H)
+
+# 4.3 Removing from heap
+
+import heapq
+H = [21,1,45,78,3,5]
+# Create the heap
+heapq.heapify(H)
+print(H)
+# Remove element from the heap
+heapq.heappop(H) #  always remove the element at the index position 1
+print(H)
+
+# 4.4 Replacing in a Heap
+
+import heapq
+H = [21,1,45,78,3,5]
+# Create the heap
+heapq.heapify(H)
+print(H)
+# Replace an element
+heapq.heapreplace(H,6)
+#  removes the smallest element of the heap 
+#  And inserts the new incoming element at some place not fixed by any order.
+print(H)
+
+# 5 Graph
+
+# 5.1 In the above graph
+
+# Create the dictionary with graph elements
+graph = { "a" : ["b","c"],
+          "b" : ["a", "d"],
+          "c" : ["a", "d"],
+          "d" : ["e"],
+          "e" : ["d"]
+         }
+
+# Print the graph 		 
+print(graph)
+
+# 5.2 Display graph vertices
+
+class graph:
+    def __init__(self, gdict=None):
+        if gdict is None:
+            gdict = []
+        self.gdict = gdict
+
+# Get the keys of the dictionary
+    def getVertices(self):
+        return list(self.gdict.keys())
+
+# Create the dictionary with graph elements
+graph_elements = { "a" : ["b","c"],
+                "b" : ["a", "d"],
+                "c" : ["a", "d"],
+                "d" : ["e"],
+                "e" : ["d"]
+                }
+
+g = graph(graph_elements)
+print(g.getVertices())
+
+# 5.3 Display graph edges
+
+class graph:
+
+    def __init__(self,gdict=None):
+        if gdict is None:
+            gdict = {}
+        self.gdict = gdict
+
+    def edges(self):
+        return self.findedges()
+# Find the distinct list of edges
+
+    def findedges(self):
+        edgename = []
+        for vrtx in self.gdict:
+            for nxtvrtx in self.gdict[vrtx]:
+                if {nxtvrtx, vrtx} not in edgename:
+                    edgename.append({vrtx, nxtvrtx})
+        return edgename
+
+# Create the dictionary with graph elements
+graph_elements = { "a" : ["b","c"],
+                "b" : ["a", "d"],
+                "c" : ["a", "d"],
+                "d" : ["e"],
+                "e" : ["d"]
+                }
+
+g = graph(graph_elements)
+
+print(g.edges())
+
+# 5.4 Adding a vertex
+
+class graph:
+
+    def __init__(self,gdict=None):
+        if gdict is None:
+            gdict = {}
+        self.gdict = gdict
+
+    def getVertices(self):
+        return list(self.gdict.keys())
+
+# Add the vertex as a key
+    def addVertex(self, vrtx):
+       if vrtx not in self.gdict:
+            self.gdict[vrtx] = []
+
+# Create the dictionary with graph elements
+graph_elements = { "a" : ["b","c"],
+                "b" : ["a", "d"],
+                "c" : ["a", "d"],
+                "d" : ["e"],
+                "e" : ["d"]
+                }
+
+g = graph(graph_elements)
+
+g.addVertex("f")
+
+print(g.getVertices())
+
+# 5.5 Adding an edge
+
+class graph:
+
+    def __init__(self,gdict=None):
+        if gdict is None:
+            gdict = {}
+        self.gdict = gdict
+
+    def edges(self):
+        return self.findedges()
+# Add the new edge
+
+    def AddEdge(self, edge):
+        edge = set(edge)
+        (vrtx1, vrtx2) = tuple(edge)
+        if vrtx1 in self.gdict:
+            self.gdict[vrtx1].append(vrtx2)
+        else:
+            self.gdict[vrtx1] = [vrtx2]
+
+# List the edge names
+    def findedges(self):
+        edgename = []
+        for vrtx in self.gdict: # 先找向量，挨个遍历向量
+            for nxtvrtx in self.gdict[vrtx]: # 然后找确定向量之后，看连接这个向量的是否有边
+                if {nxtvrtx, vrtx} not in edgename:
+                    edgename.append({vrtx, nxtvrtx})
+        return edgename
+
+# Create the dictionary with graph elements
+graph_elements = { "a" : ["b","c"],
+                "b" : ["a", "d"],
+                "c" : ["a", "d"],
+                "d" : ["e"],
+                "e" : ["d"]
+                }
+
+g = graph(graph_elements)
+g.AddEdge({'a','e'})
+g.AddEdge({'a','c'})
+print(g.edges()) 
+
