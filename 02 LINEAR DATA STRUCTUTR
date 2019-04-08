@@ -250,28 +250,35 @@ head = newhead
 
 # 6.3 Inserting at the End of the Linked List
 
-class Node:
+class ListNode(object):
     def __init__(self, x):
         self.val = x
         self.next = None
-           
-e1 = Node("Mon")
-e2 = Node("Tue")
-e3 = Node("Wed")
-
-e1.next = e2
-e2.next = e3
-e4 =Node('Thu') 
-last = e4 # 关键一步，添加last指针，不光只有head指针了
-
-head = e1
-while head.next is not None:    
-    head = head.next
-head.next = last
     
-newhead = Node("Sun")
-newhead.next = head
-head = newhead 
+    def InsertAtend(self, x):
+        newNode = ListNode(x)
+        if self.val is None:
+            self.val =  newNode
+            return
+        laste = self
+        while laste.next is not None:
+            laste = laste.next
+        laste.next = ListNode(x)
+            
+'''
+测试结果
+'''
+head =  ListNode(1)
+head.InsertAtend(2)
+head.InsertAtend(3)
+head.InsertAtend(4)
+head.InsertAtend(5)
+head.InsertAtend(6)
+head.InsertAtend(7)
+
+while head is not None:
+    print(head.val)
+    head = head.next
 
 # 6.4 Inserting in between two Data Nodes
 class Node:
