@@ -1,0 +1,4 @@
+     (min(l, r) or max(l, r)) +1
+   
+      # if max = 1 min = 0 return max
+      # if max >1  return max min
