@@ -1,6 +1,7 @@
 
 
 # 5 Inserting Sorting
+
 '''
 把数组分成已排序和未排序两个区间，以数组第一个元素当做已排序区间，剩下的即被当做未排序区间，
 每次都从未排序区间中找出一个元素来和已排序区间中的元素比较，并插入到已排序区间中的合适位置，直到未排序区间元素为 0 。
@@ -26,3 +27,36 @@ def insertSort(arr):
 arr = [9,824,4,5,2,1,7,8]
 
 print(insertSort(arr))
+
+# 6 Shell Sorting 
+
+'''
+把序列分成若干个子序列，对与每一个子序列进行插入排序，
+一般这个分成几个子序列和插入排序需要进行多轮，第一轮的间隔一般为序列长度的一半，第二轮再减半，知道长度为3为最后一轮
+这样做的好处是：能够用最快的速度降低序列的逆序程度
+'''
+def shellSort(input_list):
+    
+    gap = len(input_list) // 2 # 将间隔设为输入列表长度的一半
+    while gap > 0: # 当间隔存在的时候
+
+        for i in range(gap, len(input_list)): # 遍历输入样本的元素，间隔是len(input_list),
+            temp = input_list[i] # 将分组后的第
+            j = i # 记录被遍历到元素位置为j
+            print(j)
+
+            # Sort the sub list for this gap # 排序
+
+            while j >= gap and input_list[j - gap] > temp: # 当间隔之前的第j个元素和间隔之后的第j个元素相比时
+                input_list[j] = input_list[j - gap] # 如果间隔之前的元素大于间隔之后的，就把间隔之前的赋给间隔之后的元素
+                j = j-gap # 把指针定位到间隔之后元素的对应位置
+            input_list[j] = temp # 把间隔之后的原元素，赋给间隔之前的元素
+
+        # Reduce the gap for the next element
+
+        gap = gap//2 # 下次间隔再除以2
+
+input_list = [19,2,31,45,30,11,121,27]
+
+shellSort(list)
+print(list)
