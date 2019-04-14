@@ -1,3 +1,132 @@
+# CONTENTS
+
+1 Bubble Sorting
+2 Merge Sorting
+3 Quick Sorting
+4 Select Sorting
+5 Insert Sorting
+6 Shell Sorting
+
+---------------------------------
+# 1 Bubble Sorting
+'''
+每次比较相邻的两个元素，如果他们的顺序错了，就把他们交换过来，
+每轮比较后，都会把最大的元素放在后面
+'''
+
+def bubblesort(list):
+
+# Swap the elements to arrange in order
+    for iter_num in range(len(list)-1,0,-1): # 每次循环的时候，指针移动的位置是从后面开始，每次移动一个的
+        for idx in range(iter_num):
+            if list[idx]>list[idx+1]:
+                temp = list[idx]
+                list[idx] = list[idx+1]
+                list[idx+1] = temp
+
+
+list = [19,2,31,45,6,11,121,27]
+bubblesort(list)
+print(list)
+
+
+# 2. Merge Sorting
+
+'''
+将两个不同的有序数组归并到第三个数组中
+'''
+
+def merge_sort(unsorted_list):
+    if len(unsorted_list) <= 1:
+        return unsorted_list
+
+# Find the middle point and devide it
+
+    middle = len(unsorted_list) // 2
+    left_list = unsorted_list[:middle]
+    right_list = unsorted_list[middle:]
+
+    left_list = merge_sort(left_list) # 将划分好的左序列进行归并排序
+    right_list = merge_sort(right_list) 
+    return list(merge(left_list, right_list))
+
+# Merge the sorted halves
+
+def merge(left_half,right_half):
+
+    res = [] # 新建一个空的序列
+    while len(left_half) != 0 and len(right_half) != 0: # 当左边和右边的序列都不等于0时
+        if left_half[0] < right_half[0]:  # 如果左边序列第一个元素小于右边第一个元素
+            res.append(left_half[0]) # 新建序列先把左边的元素放进去
+            left_half.remove(left_half[0]) # 然后把左边序列第一个元素移除，这样每次动序列的第一个元素就行了，不用再动指针了
+        else:
+            res.append(right_half[0]) # 如果左边的徐磊大约右边的第一个元素，新建的序列放入右边第一个元素
+            right_half.remove(right_half[0]) # 把右边序列的元素移除
+    if len(left_half) == 0: # 如果上面这个归并排序，因为最低一层的是把两个元素化成左右两个部分，所以，如果左边的元素移走了，就剩右边的元素了
+        res = res + right_half # 就把左边的元素放到新建序列后面再加上一个右边元素
+    else:
+        res = res + left_half
+    return res
+
+unsorted_list = [64, 34, 25, 12, 22, 11, 90]
+
+print(merge_sort(unsorted_list))
+
+# 3 Quick Sorting
+
+'''
+与归并排序互补，
+归并排序是将序列分成两个子序列分别排序，并将有序的子序列归并以达到将整个数组排序的目的
+而快速排序是当两个子序列有序时整个数组自然有序
+'''
+
+def quickSort(arr):
+    
+	    less = []
+	    pivotList = []
+	    more = []
+	
+        if len(arr) <= 1:
+	        return arr
+	    
+        else:
+	        pivot = arr[0]      #将第一个值做为基准
+	        for i in arr:
+	            if i < pivot:
+	                less.append(i)
+	            elif i > pivot:
+	                more.append(i)
+	            else:
+	                pivotList.append(i)
+	
+	        less = quickSort(less)      #得到第一轮分组之后，继续将分组进行下去。
+	        more = quickSort(more)
+	
+	        return less + pivotList + more
+
+# 4 Selection Sort
+'''
+最简单的排序
+首先，找到数组中最小的元素
+其次，将它和数组中的第一个元素交换位置
+再次，再剩下的元素中找到最小的元素，将它与数据的第二个位置交换
+'''
+def selection_sort(input_list):
+
+    for idx in range(len(input_list)):
+
+        min_idx = idx
+        for j in range( idx +1, len(input_list)):
+            if input_list[min_idx] > input_list[j]:
+                min_idx = j
+# Swap the minimum value with the compared value
+
+        input_list[idx], input_list[min_idx] = input_list[min_idx], input_list[idx]
+
+
+l = [19,2,31,45,30,11,121,27]
+selection_sort(l)
+print(l)
 
 
 # 5 Inserting Sorting
