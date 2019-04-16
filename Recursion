@@ -14,38 +14,10 @@ def getFactorical(n)
     return 1
   else:
     return n*getFactorical(n-1)
- 
-  '''
-  以下是问题代码
-  '''
-  class Solution(object):
-    def maxDepth(self, root):
-        depth = 0       # 这个depth删掉，我们用递归的次数，代替depth，在最后r1和r2上加上1 + return（相当于返回的值，类似于depth = depth + 1的意思）
-        if root is None:
-            return depth 
-        # 问题说明：接下来的是判断root的下一个节点是不是都为空的节点
-        depth = depth  + 1 # 这里应该在这之前加上 if root is not None:
-        while root.left is None and root.right is None: # 后面的都不要了
-            depth = depth
-            return depth
-        else:            
-            if root.left is not None:
-                root_1 = root.left  
-            else:
-                root_1 = root
-            if root.right is not None:
-                root_2 = root.right
-            else:
-                root_2 = root
-            depth = depth + 1
-            r1 = self.maxDepth(root_1) # 应该改成 r1 = self.maxDepth(root.left) 首先看看root.left是否为空
-            r2 = self.maxDepth(root_2) # 应该改成 r2 = self.maxDepth(root.right) 首先看看root.right是否为空
-        
-        return r1, r2 
-    
-    '''
-    以下为正确代码
-    '''
+'''''''''''''''''''''''' 
+3. 求树的最大深度
+''''''''''''''''''''''''
+
     class Solution(object):
     def maxDepth(self, root):
         if root is None:
@@ -54,9 +26,27 @@ def getFactorical(n)
             r1 = 1 + self.maxDepth(root.left) 
             r2 = 1 + self.maxDepth(root.right) 
         return max(r1, r2)
+       
+ ''''''''''''''''''''''''''
+ 4. 树的sum(root to leaf) 等于一个值  
+ ''''''''''''''''''''''''''
+ 
+  class Solution:
+
+    def hasPathSum(self, root, sum): # 用减法，不必每次设置初值，每次初值就是sum
+        if not root:
+            return False
+
+        if not root.left and not root.right and root.val == sum:
+            return True
+        
+        sum = sum - root.val
+        
+        return self.hasPathSum(root.left, sum)  or self.hasPathSum(root.right, sum)
+
  
  '''
- 递归的另一个例子——二叉树的插入
+ 5. 递归的另一个例子——二叉树的插入
  '''
  def insert(self, data):
     if self.data is not None:
@@ -74,7 +64,7 @@ def getFactorical(n)
         self.data = data
  
 '''
-递归的一个例子——打印树
+6. 递归的一个例子——打印树
 '''
  # Print the tree
     def PrintTree(self):
