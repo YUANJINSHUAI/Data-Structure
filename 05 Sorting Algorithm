@@ -12,6 +12,7 @@
 '''
 每次比较相邻的两个元素，如果他们的顺序错了，就把他们交换过来，
 每轮比较后，都会把最大的元素放在后面
+时间复杂度：O(n^2)
 '''
 
 def bubblesort(list):
@@ -33,7 +34,9 @@ print(list)
 # 2. Merge Sorting
 
 '''
-将两个不同的有序数组归并到第三个数组中
+分而治之
+先分（步数^2 = n），再排序(步数^2 = n)
+O(nlogn)
 '''
 
 def merge_sort(unsorted_list):
@@ -48,7 +51,7 @@ def merge_sort(unsorted_list):
 
     left_list = merge_sort(left_list) # 将划分好的左序列进行归并排序
     right_list = merge_sort(right_list) 
-    return list(merge(left_list, right_list))
+    return merge(left_list, right_list)
 
 # Merge the sorted halves
 
