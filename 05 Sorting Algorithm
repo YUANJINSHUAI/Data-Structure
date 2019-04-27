@@ -81,6 +81,11 @@ print(merge_sort(unsorted_list))
 与归并排序互补，
 归并排序是将序列分成两个子序列分别排序，并将有序的子序列归并以达到将整个数组排序的目的
 而快速排序是当两个子序列有序时整个数组自然有序
+关键在于 less = [] pivotlist = [] more = [] 和 
+	        less = quickSort(less)  
+	        more = quickSort(more)	
+	        return less + pivotList + more
+O(nlogn)
 '''
 
 def quickSort(arr):
@@ -106,6 +111,10 @@ def quickSort(arr):
 	        more = quickSort(more)
 	
 	        return less + pivotList + more
+
+
+unsorted_list = [64, 34, 25, 12, 22, 11, 90]
+print(merge_sort(unsorted_list))
 
 # 4 Selection Sort
 '''
