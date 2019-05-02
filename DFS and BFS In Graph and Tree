@@ -70,15 +70,36 @@ def minDepth1(self, root):
         return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
  
 # BFS in tree  
-def minDepth(self, root):
-    if not root:
-        return 0
-    queue = collections.deque([(root, 1)])
-    while queue:
-        node, level = queue.popleft()
-        if node:
-            if not node.left and not node.right:
-                return level
-            else:
-                queue.append((node.left, level+1))
-                queue.append((node.right, level+1))
+class TreeNode:
+	def __init__(self, x):
+		self.val = x
+		self.right = None
+		self.left = None
+	
+	def BFS(root):
+		
+		queue = []
+		visit = []
+		# 将首个根节点添加到队列中 
+		queue.append(root)		
+		while queue:
+			temp = queue.pop(0)
+			visit.append(temp.val)
+			left = temp.left
+			right = temp.right
+			
+			if left:
+				queue.append(left)
+			if right:
+				queue.append(right)
+			print(visit)
+			
+		
+root = TreeNode(6)
+root.left = TreeNode(2)
+root.right = TreeNode(8)
+root.left.left = TreeNode(0)
+root.left.right = TreeNode(4)
+root.right.left = TreeNode(7)
+root.right.right = TreeNode(9)
+
